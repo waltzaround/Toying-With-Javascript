@@ -1,0 +1,44 @@
+	//creating a new instance of a pixi stage
+		console.log("Phase 0");
+var stage = new PIXI.Stage(0x66ff99);
+console.log("Phase 1 Stage Created");
+
+//create a renderer instance
+var renderer = PIXI.autoDetectRenderer(400,300);
+console.log("Phase 2 renderer has been set up");
+
+//add the renderer view element to the DOM
+document.body.appendChild(renderer.view);
+console.log("Phase 3 element added to DOM");
+
+requestAnimFrame(animate);
+console.log("Phase 4 get the next frame from the animate function");
+//create a texture from an image path
+var texture = PIXI.Texture.fromImage("images/matarboy.png");
+console.log("Phase 5 loaded image");
+//create a new Sprite using the texture
+var bunny = new PIXI.Sprite(texture);
+console.log("Phase 6 sprite defined with image");
+
+//center the sprites anchor point
+bunny.anchor.x = 0.5;
+bunny.anchor.y = 0.5;
+console.log("Phase 7 - anchor points defined for bunny");
+//move the sprite to the center of the screen
+bunny.position.x = 200;
+bunny.position.y = 150;
+console.log("Phase 8 - position defined for bunny");
+
+stage.addChild(bunny);
+console.log("Phase 9 - bunny added");
+
+function animate() {
+	requestAnimFrame(animate);
+	
+	//just for fun, let's rotate teh bunny :D :D :D
+	bunny.rotation += 0.1;
+	console.log("rotating!");
+	//render the stage
+	renderer.render (stage);
+}
+console.log("complete!");
